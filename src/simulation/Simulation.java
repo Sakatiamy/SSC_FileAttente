@@ -13,6 +13,7 @@ public abstract class Simulation {
 
     protected double lambda;
     protected double mu;
+    protected double a;
     protected ListeEvents liste;
     protected Queue q;
     protected double t;
@@ -20,25 +21,32 @@ public abstract class Simulation {
     protected double sommeCarreTempsAttente;
     protected double compteurTempsService;
     protected double sommeCarreTempsService;
+    protected int compteur;
     protected int nombre_Clients;
+    protected double nombre_Clients_Presents;
+    protected double nombre_Clients_Presents_Total;
 
     public Simulation(double lambda, double mu) {
         this.lambda = lambda;
         this.mu = mu;
+        this.a = this.lambda / this.mu;
         this.q = new Queue();
         this.liste = new ListeEvents();
-        this.nombre_Clients = 0;
         this.compteurTempsAttente = 0;
         this.compteurTempsService = 0;
         this.sommeCarreTempsAttente = 0;
         this.sommeCarreTempsService = 0;
+        this.compteur = 0;
+        this.nombre_Clients = 0;
+        this.nombre_Clients_Presents = 0;
+        this.nombre_Clients_Presents_Total = 0;
     }
 
     public double expo(double taux) {
         return -Math.log(Math.random()) / taux;
     }
 
-    public double getTempsAttenteMoyen() {
+    public double getTempsAttenteMoyenPratique() {
         return this.compteurTempsAttente / this.nombre_Clients;
     }
 
@@ -58,6 +66,10 @@ public abstract class Simulation {
 
     public int getNombreTotalClients() {
         return this.nombre_Clients;
+    }
+
+    public double getNombreTotalClientsSystemePratique() {
+        return this.nombre_Clients_Presents_Total / this.compteur;
     }
 
     public abstract void simulate(double simLength);
