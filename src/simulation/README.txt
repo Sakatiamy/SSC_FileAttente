@@ -10,3 +10,4 @@ il faudrait borner les résultats pratiques à partir des résultats théoriques
 ainsi rejeter ceux qui sont à l'exterieur.
 Ceci avec un intervalle de confiance :    
     valeur +/- 1.96*(ecart-type)/racine(nombre de client total)
+avec nombre de client totale = taille de l'échantillon
